@@ -51,11 +51,16 @@ class Controller:
 
     def readDD2(self,e):
         self.nodoPartenza=e.control.data
+
+
     def handleCerca(self, e):
         pass
 
     def handleRicorsione(self, e):
-        pass
+        percorsoOttimo, costoOttimo=self._model.getPercorsoOttimo(self.nodoPartenza)
+        self._view.txt_result.controls.clear()
+        self._view.txt_result.controls.append(ft.Text(f"Percorso ottimo trovato. Esso attravera {len(percorsoOttimo)} nodi e ha costo {costoOttimo}"))
+        self._view.update_page()
 
     def fillDD(self):
         stores= self._model.getAllStores()
